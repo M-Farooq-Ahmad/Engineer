@@ -11,6 +11,7 @@
 <style>
 :root{
   --primary:#8e44ad;
+  --secondary: #3498db; /* Blue for hover */
   --dark:#222;
   --light:#ffffff;
   --gray:#555;
@@ -30,6 +31,7 @@ body{
   background:var(--light);
   color:var(--dark);
   line-height:1.6;
+  overflow-x: hidden;
 }
 
 .container{
@@ -118,24 +120,11 @@ nav a:hover{ color:var(--primary); }
   gap: 60px;
 }
 
-.hero-text{
-  flex: 1;
-}
-
+.hero-text{ flex: 1; }
 .hero-text h1{ font-size:48px; line-height: 1.2; }
-
-.hero-text h2{
-  font-size:36px;
-  margin:10px 0;
-}
-
+.hero-text h2{ font-size:36px; margin:10px 0; }
 .hero-text h2 span{ color:var(--primary); }
-
-.hero-text p{
-  color:var(--gray);
-  margin:20px 0 35px;
-  font-size: 18px;
-}
+.hero-text p{ color:var(--gray); margin:20px 0 35px; font-size: 18px; }
 
 .hero-img{
   flex: 1;
@@ -166,126 +155,111 @@ nav a:hover{ color:var(--primary); }
   border-radius:10px;
 }
 
-/* SERVICES */
-.service-section{
-  position:relative;
+/* CAROUSEL COMMON STYLES */
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
 }
 
-.service-container{
-  display:flex;
-  gap:25px;
-  overflow:hidden;
-  scroll-behavior:smooth;
+.slider-wrapper {
+    overflow: hidden;
+    width: 100%;
+    padding: 20px 0; /* Prevents upward animation clipping */
 }
 
-.service-card{
-  flex:0 0 calc(33.333% - 16px);
-  border:1px solid #000;
-  border-radius:16px;
-  background:#fff;
-  padding:40px 30px;
-  cursor:pointer;
-  transition: var(--transition);
-  position:relative;
-  min-height:180px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
-.service-card small{
-  display:block;
-  margin-top:12px;
-  color:#777;
+.arrow {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: black;
+    transition: color 0.3s;
+    z-index: 10;
+    padding: 10px;
 }
 
-.service-card:hover{
-  background:var(--primary);
-  color:#fff;
-  transform:translateY(-10px);
+.arrow:hover { color: var(--secondary); }
+
+/* NEW SERVICES SECTION */
+.service-item {
+    min-width: 33.33%;
+    padding: 0 15px;
+    box-sizing: border-box;
 }
 
-.service-card:hover small{ color:#f1f1f1; }
-
-.arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:#000;
-  color:#fff;
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  cursor:pointer;
-  transition: var(--transition);
-  z-index:10;
+.service-card-new {
+    border: 1px solid #eee;
+    padding: 40px 30px;
+    border-radius: 16px;
+    background: #fff;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease, background 0.3s, color 0.3s;
+    height: 100%;
 }
 
-.arrow:hover{ background:#3498db; }
+.service-card-new h3 { margin-bottom: 10px; color: var(--primary); }
+.service-card-new p { font-size: 0.9rem; color: #777; transition: color 0.3s; }
 
-.arrow-left{ left:-20px; }
-.arrow-right{ right:-20px; }
-
-/* PROJECTS */
-.project-section{ position:relative; }
-
-.project-container{
-  display:flex;
-  gap:25px;
-  overflow:hidden;
-  scroll-behavior:smooth;
+.service-card-new:hover {
+    background: var(--primary);
+    color: #fff;
+    transform: translateY(-15px);
 }
 
-.project-card{
-  flex:0 0 calc(33.333% - 16px);
-  border:1px solid #000;
-  border-radius:16px;
-  text-align:center;
-  cursor:pointer;
-  transition: var(--transition);
-  background:#fff;
-  min-height:250px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:20px;
-  background-size:cover;
-  background-position:center;
-  color:#222;
+.service-card-new:hover h3, .service-card-new:hover p { color: #fff; }
+
+/* NEW PROJECTS SECTION */
+.project-item {
+    min-width: 33.33%;
+    padding: 0 15px;
+    box-sizing: border-box;
 }
 
-.project-card:hover{
-  background:var(--primary);
-  color:#fff;
-  transform:translateY(-10px);
+.project-card-new {
+    border: 1px solid #eee;
+    border-radius: 16px;
+    background: #fff;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, filter 0.3s;
+    padding-bottom: 20px;
 }
 
-.project-card h3{
-  margin-top:15px;
-  font-size:18px;
-  font-weight:600;
+.project-card-new img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
 }
 
-.project-card button{
-  margin-top:15px;
-  padding:10px 20px;
-  border:none;
-  border-radius:8px;
-  background:#fff;
-  color:var(--primary);
-  cursor:pointer;
-  transition: var(--transition);
+.project-card-new h3 { margin: 15px 0; font-size: 1.1rem; }
+
+.project-card-new:hover {
+    transform: translateY(-15px);
+    filter: invert(1);
 }
 
-.project-card:hover button{
-  background:#fff;
-  color:var(--primary);
+.view-details {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--primary);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: filter 0.3s;
 }
 
-/* CONTACT */
+/* CONTACT SECTION */
 .contact-box{
   display:grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -293,20 +267,8 @@ nav a:hover{ color:var(--primary); }
   align-items: start;
 }
 
-.contact-info p {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.social-links {
-    margin-top: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
+.contact-info p { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.social-links { margin-top: 25px; display: flex; flex-direction: column; gap: 15px; }
 .social-item {
     text-decoration: none;
     color: var(--dark);
@@ -320,90 +282,41 @@ nav a:hover{ color:var(--primary); }
     font-weight: 500;
 }
 
-.social-item i {
-    font-size: 20px;
-    color: var(--primary);
-}
+.social-item i { font-size: 20px; color: var(--primary); }
+.social-item:hover { background: var(--primary); color: #fff; border-color: var(--primary); transform: translateX(5px); }
+.social-item:hover i { color: #fff; }
 
-.social-item:hover {
-    background: var(--primary);
-    color: #fff;
-    border-color: var(--primary);
-    transform: translateX(5px);
-}
+input, textarea{ width:100%; padding:16px; border-radius:8px; border:1px solid #ddd; margin-bottom:15px; font-size:15px; outline-color: var(--primary); }
+textarea{ resize:none; height:150px; }
 
-.social-item:hover i {
-    color: #fff;
-}
-
-input, textarea{
-  width:100%;
-  padding:16px;
-  border-radius:8px;
-  border:1px solid #ddd;
-  margin-bottom:15px;
-  font-size:15px;
-  outline-color: var(--primary);
-}
-
-textarea{
-  resize:none;
-  height:150px;
-}
-
-/* FOOTER */
-footer{
-  background:var(--primary);
-  color:#fff;
-  text-align:center;
-  padding:30px;
-  margin-top: 50px;
-}
+footer{ background:var(--primary); color:#fff; text-align:center; padding:30px; margin-top: 50px; }
 
 /* RESPONSIVE */
 @media(max-width:992px){
-  .hero-text h1 { font-size: 38px; }
-  .hero-img img { max-width: 350px; }
+    .hero-text h1 { font-size: 38px; }
+    .hero-img img { max-width: 350px; }
 }
 
 @media(max-width:768px){
   nav ul{
-    position:absolute;
-    top:70px;
-    right:0;
-    background:#fff;
-    width:100%;
-    flex-direction:column;
-    align-items:center;
-    display:none;
-    padding:30px 0;
-    border-bottom:1px solid #eee;
-    box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+    position:absolute; top:70px; right:0; background:#fff; width:100%; flex-direction:column; align-items:center; display:none; padding:30px 0; border-bottom:1px solid #eee; box-shadow: 0 10px 10px rgba(0,0,0,0.05);
   }
-
   nav ul.active{ display:flex; }
   .hamburger{ display:block; }
-
-  .hero{
-    flex-direction: column-reverse;
-    text-align:center;
-    padding: 40px 0;
-    gap: 30px;
-  }
-
+  .hero{ flex-direction: column-reverse; text-align:center; padding: 40px 0; gap: 30px; }
   .hero-img{ justify-content: center; }
   .hero-img img { max-width: 300px; }
-
   .contact-box{ grid-template-columns:1fr; }
-  section{ padding:60px 0; }
-
-  .service-card{ flex:0 0 100%; }
-  .project-card{ flex:0 0 100%; }
+  
+  /* Carousel Mobile */
+  .service-item, .project-item { min-width: 100%; }
+  .arrow { display: none; }
 }
 </style>
 </head>
 
 <body>
+
 <header>
   <div class="container nav">
     <div class="logo">Farooq</div>
@@ -447,49 +360,70 @@ footer{
   </div>
 </section>
 
-<!-- MY SERVICES SECTION -->
-<section id="services" class="service-section">
+<section id="services">
   <div class="container">
-    <h2 class="section-title">My Services</h2>
-    <div class="arrow arrow-left" onclick="scrollService(-1)"><i class="fas fa-chevron-left"></i></div>
-    <div class="arrow arrow-right" onclick="scrollService(1)"><i class="fas fa-chevron-right"></i></div>
-    <div class="service-container" id="serviceContainer">
-      <div class="service-card" onclick="openGmail()">Graphic Design<small>Creative branding and visual design solutions.</small></div>
-      <div class="service-card" onclick="openGmail()">UI / UX Design<small>User-centered interfaces for web & mobile.</small></div>
-      <div class="service-card" onclick="openGmail()">Web Design<small>Modern, responsive website designs.</small></div>
-      <div class="service-card" onclick="openGmail()">App Design<small>Clean and functional mobile app UI.</small></div>
-      <div class="service-card" onclick="openGmail()">Video Editing<small>Professional video production and editing.</small></div>
+    <h2 class="section-title">The Services I Provide</h2>
+    <div class="carousel-container">
+        <button class="arrow" onclick="moveSlide('service-track', -1)">❮</button>
+        <div class="slider-wrapper">
+            <div class="slider-track" id="service-track">
+                <div class="service-item"><div class="service-card-new" onclick="openGmail()"><h3>Web Design</h3><p>As a Talented Web Designer, I specialize in creating visually stunning and user-friendly websites.</p></div></div>
+                <div class="service-item"><div class="service-card-new" onclick="openGmail()"><h3>Graphic Design</h3><p>I am a skilled Graphic Designer offering creative solutions that captivate audiences.</p></div></div>
+                <div class="service-item"><div class="service-card-new" onclick="openGmail()"><h3>UI UX Design</h3><p>User-centered interfaces focusing on aesthetics and high-end functionality.</p></div></div>
+                <div class="service-item"><div class="service-card-new" onclick="openGmail()"><h3>App Design</h3><p>Proficient in crafting sleek and user-friendly mobile experiences for iOS and Android.</p></div></div>
+                <div class="service-item"><div class="service-card-new" onclick="openGmail()"><h3>Linux Administration</h3><p>System management, server configuration, and performance optimization.</p></div></div>
+            </div>
+        </div>
+        <button class="arrow" onclick="moveSlide('service-track', 1)">❯</button>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS SECTION -->
-<section id="portfolio" class="project-section">
+<section id="portfolio">
   <div class="container">
     <h2 class="section-title">Latest Projects</h2>
-    <div class="arrow arrow-left" onclick="scrollProject(-1)"><i class="fas fa-chevron-left"></i></div>
-    <div class="arrow arrow-right" onclick="scrollProject(1)"><i class="fas fa-chevron-right"></i></div>
-    <div class="project-container" id="projectContainer">
-      <div class="project-card" style="background-image:url('food-app.jpg')" onclick="openLink('https://www.figma.com/design/gGNoz3cJn51dNnxGoXalhA/Foods')">
-        <h3>Food App</h3>
-        <button>View Details</button>
-      </div>
-      <div class="project-card" style="background-image:url('bike-shopping-app.jpg')" onclick="openLink('https://www.figma.com/design/erXw5uf6pbzMfY8ks2PObm/Bike-Shopping-App')">
-        <h3>Bike Shopping App</h3>
-        <button>View Details</button>
-      </div>
-      <div class="project-card" style="background-image:url('my-portfolio.jpg')" onclick="openLink('https://www.figma.com/design/eumb6reWfEw5whNKfMNP1a/Farooq-portfolio')">
-        <h3>My Portfolio</h3>
-        <button>View Details</button>
-      </div>
-      <div class="project-card" style="background-image:url('company-website.jpg')" onclick="openLink('https://www.figma.com/design/uljLWbcGlLvr9khAwIZhK0/snovatek')">
-        <h3>Company Website</h3>
-        <button>View Details</button>
-      </div>
-      <div class="project-card" style="background-image:url('friend-portfolio.jpg')" onclick="openLink('https://www.figma.com/design/nygRfTqoQOtLKCYIMri3kq/Hassan-Ali-Portfolio')">
-        <h3>Friend Portfolio</h3>
-        <button>View Details</button>
-      </div>
+    <div class="carousel-container">
+        <button class="arrow" onclick="moveSlide('project-track', -1)">❮</button>
+        <div class="slider-wrapper">
+            <div class="slider-track" id="project-track">
+                <div class="project-item">
+                    <div class="project-card-new">
+                        <img src="friend-portf" alt="Friend's Portfolio">
+                        <h3>Friend's Portfolio</h3>
+                        <a href="https://www.figma.com/design/nygRfTqoQOtLKCYIMri3kq/Hassan-Ali-Portfolio?node-id=4197-2&t=BnSx5bqZtTUolo1W-1" target="_blank" class="view-details">View Details</a>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-card-new">
+                        <img src="food-app.png" alt="Food App">
+                        <h3>Food App</h3>
+                        <a href="https://www.figma.com/design/gGNoz3cJn51dNnxGoXalhA/Foods?node-id=0-1&t=aEvm8ceEA0Nll3s6-1" target="_blank" class="view-details">View Details</a>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-card-new">
+                        <img src="my-portfolio.png" alt="My Portfolio">
+                        <h3>Portfolio</h3>
+                        <a href="https://www.figma.com/design/eumb6reWfEw5whNKfMNP1a/Farooq-portfolio?node-id=175-7&t=wSxjDKjrwSJ8aMAt-1" target="_blank" class="view-details">View Details</a>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-card-new">
+                        <img src="bike-shopping-app.png" alt="Bike Shopping App">
+                        <h3>Bike Shopping App</h3>
+                        <a href="https://www.figma.com/design/erXw5uf6pbzMfY8ks2PObm/Bike-Shopping-App?node-id=1-40&t=qQ9K57BWiSxRPAXb-1" target="_blank" class="view-details">View Details</a>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-card-new">
+                        <img src="company-website.png" alt="Company Website">
+                        <h3>Company Web</h3>
+                        <a href="https://www.figma.com/design/uljLWbcGlLvr9khAwIZhK0/snovatek?node-id=2395-3&t=Nw438LQkEffP6oEc-1" target="_blank" class="view-details">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="arrow" onclick="moveSlide('project-track', 1)">❯</button>
     </div>
   </div>
 </section>
@@ -504,67 +438,78 @@ footer{
         <textarea id="message" placeholder="Your Message" required></textarea>
         <button type="submit" class="btn">Send Message</button>
       </form>
-
        <div class="contact-info">
         <p><i class="fas fa-phone" style="color:var(--primary)"></i> <strong>Phone:</strong> +92 314 1683402</p>
-        
         <div class="social-links">
-            <a href="https://wa.me/923141683402" class="social-item" target="_blank">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-            <a href="https://www.linkedin.com/in/farooq-baloch/" class="social-item" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/M-Farooq-Ahmad" class="social-item" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="#" onclick="openGmail(); return false;" class="social-item">
-                <i class="fas fa-at"></i> Gmail
-            </a>
+            <a href="https://wa.me/923141683402" class="social-item" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="https://www.linkedin.com/in/farooq-baloch/" class="social-item" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/M-Farooq-Ahmad" class="social-item" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="#" onclick="openGmail(); return false;" class="social-item"><i class="fas fa-at"></i> Gmail</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<footer>
-  © 2026 M Farooq Ahmad — All Rights Reserved
-</footer>
+<footer>© 2026 M Farooq Ahmad — All Rights Reserved</footer>
 
 <script>
-// MENU TOGGLE
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("active");
-}
+function toggleMenu(){ document.getElementById("menu").classList.toggle("active"); }
+function openGmail(){ window.location.href = "mailto:engrmfarooqahmad@gmail.com"; }
 
-// OPEN LINKS
-function openLink(url){
-  window.open(url,"_blank");
-}
-
-// OPEN GMAIL
-function openGmail(){
-  window.open("https://mail.google.com/mail/?view=cm&fs=1&to=engrmfarooqahmad@gmail.com","_blank");
-}
-
-// SEND MAIL FORM
 function sendMail(){
   let name=document.getElementById("name").value;
   let email=document.getElementById("email").value;
   let message=document.getElementById("message").value;
-
-  let gmailURL=
-    "https://mail.google.com/mail/?view=cm&fs=1"+
-    "&to=engrmfarooqahmad@gmail.com"+
-    "&su=Portfolio Contact from "+encodeURIComponent(name)+
-    "&body="+encodeURIComponent("Name: "+name+"\nEmail: "+email+"\n\n"+message);
-
+  let gmailURL="https://mail.google.com/mail/?view=cm&fs=1&to=engrmfarooqahmad@gmail.com&su=Portfolio Contact from "+encodeURIComponent(name)+"&body="+encodeURIComponent("Name: "+name+"\nEmail: "+email+"\n\n"+message);
   window.open(gmailURL,"_blank");
 }
 
-// SERVICES CIRCULAR SCROLL
+/* CAROUSEL LOGIC */
 let serviceIndex = 0;
-const serviceContainer = document.getElementById("serviceContainer");
-function scrollService(dir){
-  const cards = serviceContainer.children.length;
-  serviceIndex = (serviceIndex + dir + cards) % cards
+let projectIndex = 0;
+
+function moveSlide(trackId, direction) {
+    const track = document.getElementById(trackId);
+    const items = track.children;
+    const totalItems = items.length;
+    let visibleItems = window.innerWidth > 768 ? 3 : 1;
+    let maxIndex = totalItems - visibleItems;
+
+    if (trackId === 'service-track') {
+        serviceIndex = (serviceIndex + direction + totalItems) % totalItems;
+        if (serviceIndex > maxIndex) serviceIndex = 0;
+        updateTrackPosition(track, serviceIndex, visibleItems);
+    } else {
+        projectIndex = (projectIndex + direction + totalItems) % totalItems;
+        if (projectIndex > maxIndex) projectIndex = 0;
+        updateTrackPosition(track, projectIndex, visibleItems);
+    }
+}
+
+function updateTrackPosition(track, index, visibleItems) {
+    const width = 100 / visibleItems;
+    track.style.transform = `translateX(-${index * width}%)`;
+}
+
+/* TOUCH SWIPE FOR MOBILE */
+let touchStartX = 0;
+let touchEndX = 0;
+
+function handleGesture(trackId) {
+    if (touchEndX < touchStartX) moveSlide(trackId, 1);
+    if (touchEndX > touchStartX) moveSlide(trackId, -1);
+}
+
+document.querySelectorAll('.slider-wrapper').forEach(wrapper => {
+    const trackId = wrapper.querySelector('.slider-track').id;
+    wrapper.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+    wrapper.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleGesture(trackId);
+    });
+});
+</script>
+
+</body>
+</html>
